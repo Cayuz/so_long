@@ -6,19 +6,11 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/14 15:24:14 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/02/14 16:51:02 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-typedef struct	s_map
-{
-	int	exit;
-	int	collectibles;
-	int	player;
-	int	line_count;
-}	t_map;
 
 void	read_map(int fd)
 {
@@ -28,7 +20,6 @@ void	read_map(int fd)
 	line = get_next_line(fd);
 	check_firstlast_line(line);
 	map.line_count = ft_strlen(line);
-	while()
 	if (ft_strlen(line) != map.line_count)
 		ft_printf("Map is not rectangular\n");
 	check_everyother_line(line, map);
@@ -69,6 +60,15 @@ void	check_everyother_line(char *line, t_map map)
 			map.player++;
 		i++;
 	}
-	if (map.player != 1, map.exit != 1, map.collectibles < 1)
+	if (map.player != 1 || map.exit != 1 || map.collectibles < 1)
 		ft_printf("Incorrect number of exit/player/collectibles\n");
+}
+
+int	main(void)
+{
+	int	fd;
+
+	fd = open("../dumy.ber");
+	read_map(fd);
+	return (1);
 }
