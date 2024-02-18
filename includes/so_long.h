@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/12 18:57:59 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/02/18 17:31:51 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,17 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+
+typedef struct	s_map
+{
+	int	exit;
+	int	collectibles;
+	int	player;
+	int	line_count;
+}	t_map;
+
+int	read_map(int fd);
+int	check_firstlast_line(char *line);
+int	check_everyother_line(char *line, t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/18 17:31:20 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/02/18 21:03:51 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	check_everyother_line(char *line, t_map *map)
 
 int	main(void)
 {
-	int	fd = open("../dumy.ber");
+	int	fd = open("../dummy.ber");
 
 	if (read_map(fd) != 1)
 		ft_printf("Failed to read map\n");
