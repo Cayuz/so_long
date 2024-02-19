@@ -6,7 +6,7 @@
 #    By: cavan-vl <cavan-vl@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/12 15:49:22 by cavan-vl      #+#    #+#                  #
-#    Updated: 2024/02/12 18:41:52 by cavan-vl      ########   odam.nl          #
+#    Updated: 2024/02/19 16:04:22 by cavan-vl      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC				:= cc -Ofast
 LIBS			:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 HEADER			:= -I ./includes -I $(LIBMLX)/include 
 
-SRCS			:= main.c
+SRCS			:= main.c parse_map.c validate_map.c
 
 SRC_DIR			:= src
 SRC				:= $(addprefix $(SRC_DIR)/, $(SRCS))

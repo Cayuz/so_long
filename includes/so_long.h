@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/18 17:31:51 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/02/19 20:59:50 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,19 @@ typedef struct	s_map
 	int	exit;
 	int	collectibles;
 	int	player;
-	int	line_count;
+	int	column_count;
+	int	row_count;
 }	t_map;
 
-int	read_map(int fd);
+/*===========PARSE_MAP===========*/
+
+int	read_map(int fd, char **map_array, t_map map);
 int	check_firstlast_line(char *line);
 int	check_everyother_line(char *line, t_map *map);
+char **store_map(int fd, char **map_array, t_map *map);
+
+/*=============UTILS=============*/
+
+int	error_msg(char *msg);
 
 #endif
