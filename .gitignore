@@ -1,1 +1,4 @@
-/includes/MLX42
+so_long
+.DS_Store
+obj/
+libraries/*

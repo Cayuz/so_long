@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/19 20:57:43 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/02/21 15:36:26 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ char **store_map(int fd, char **map_array, t_map *map)
 		line = get_next_line(fd);
 		map_array[i] = line;
 	}
-	map->row_count == i;
+	map->row_count = i;
 	return(map_array);
 }
 
-int	read_map(int fd, char **map_array, t_map map)
+int	read_map(char **map_array, t_map map)
 {
 	int	i;
 
@@ -48,11 +48,12 @@ int	read_map(int fd, char **map_array, t_map map)
 		}
 		check_everyother_line(map_array[i], &map);
 	}
+	return (0);
 }
 
 int	check_firstlast_line(char *line)
 {
-	if (ft_strchr(line, '1') == -1)
+	if (ft_strchr(line, '1') == NULL)
 		error_msg("Map is not surrounded by walls");
 	return(1);
 }

@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/19 20:59:50 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/02/21 15:35:58 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct	s_map
 
 /*===========PARSE_MAP===========*/
 
-int	read_map(int fd, char **map_array, t_map map);
+int	read_map(char **map_array, t_map map);
 int	check_firstlast_line(char *line);
 int	check_everyother_line(char *line, t_map *map);
 char **store_map(int fd, char **map_array, t_map *map);

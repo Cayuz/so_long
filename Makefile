@@ -6,20 +6,21 @@
 #    By: cavan-vl <cavan-vl@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/12 15:49:22 by cavan-vl      #+#    #+#                  #
-#    Updated: 2024/02/19 16:04:22 by cavan-vl      ########   odam.nl          #
+#    Updated: 2024/02/22 16:17:35 by cavan-vl      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			:= so_long
 
-LIBMLX			:= ./includes/MLX42
+LIBMLX			:= ./libraries/MLX42
+LIBFT			:= ./libraries/libft42
 
 CFLAGS			:= -Wall -Werror -Wextra
 CC				:= cc -Ofast
 LIBS			:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-HEADER			:= -I ./includes -I $(LIBMLX)/include 
+HEADER			:= -I ./includes -I $(LIBMLX)/include -I $(LIBFT)
 
-SRCS			:= main.c parse_map.c validate_map.c
+SRCS			:= main.c parse_map.c
 
 SRC_DIR			:= src
 SRC				:= $(addprefix $(SRC_DIR)/, $(SRCS))
@@ -48,10 +49,16 @@ MAGENTAB	:=	\033[1;35m
 CYANB		:=	\033[1;36m
 WHITEB		:=	\033[1;37m
 
-all: libmlx $(NAME)
+all: libmlx libft $(NAME)
 
 libmlx:
 	@ cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+
+libft:
+	@ make -C $(LIBFT)
+
+submodule:
+	@ git submodule update --init --recursive
 
 $(NAME): $(OBJ)
 	@ $(CC) $^ $(CFLAGS) $(HEADER) $(LIBS) -o $(NAME)
