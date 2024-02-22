@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/21 15:35:58 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/02/22 19:20:27 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 # define TILE_SIZE 64
 # define BPP sizeof(int32_t)
 
-# include "MLX42/include/MLX42/MLX42.h"
-# include "../libraries/libft/libft.h"
-# include "../libraries/libft/ft_printf/ft_printf.h"
-# include "../libraries/get_next_line/get_next_line.h"
+# include "MLX42.h"
+# include "libft.h"
+# include "ft_printf.h"
+# include "get_next_line.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <fcntl.h>
 
 typedef struct	s_map
 {

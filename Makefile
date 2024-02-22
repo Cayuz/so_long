@@ -6,7 +6,7 @@
 #    By: cavan-vl <cavan-vl@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/12 15:49:22 by cavan-vl      #+#    #+#                  #
-#    Updated: 2024/02/22 16:17:35 by cavan-vl      ########   odam.nl          #
+#    Updated: 2024/02/22 17:51:14 by cavan-vl      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ LIBFT			:= ./libraries/libft42
 
 CFLAGS			:= -Wall -Werror -Wextra
 CC				:= cc -Ofast
-LIBS			:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-HEADER			:= -I ./includes -I $(LIBMLX)/include -I $(LIBFT)
+LIBS			:= $(LIBFT)/libft.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+HEADER			:= -I ./includes -I $(LIBMLX)/include/MLX42 -I $(LIBFT)/inc
 
-SRCS			:= main.c parse_map.c
+SRCS			:= main.c parse_map.c utils.c 
 
 SRC_DIR			:= src
 SRC				:= $(addprefix $(SRC_DIR)/, $(SRCS))
@@ -52,16 +52,16 @@ WHITEB		:=	\033[1;37m
 all: libmlx libft $(NAME)
 
 libmlx:
-	@ cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+	@ cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4 > /dev/null
 
 libft:
-	@ make -C $(LIBFT)
+	@ make -C $(LIBFT) > /dev/null
 
 submodule:
-	@ git submodule update --init --recursive
+	@ git submodule update --init --recursive --remote
 
 $(NAME): $(OBJ)
-	@ $(CC) $^ $(CFLAGS) $(HEADER) $(LIBS) -o $(NAME)
+	@ $(CC) $(OBJ) $(CFLAGS) $(HEADER) $(LIBS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@ mkdir -p $(OBJ_DIR)
@@ -69,9 +69,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	@ rm -rf $(OBJ_DIR)
+	@ rm -rf libraries/libft42/$(OBJ_DIR)/
 
 fclean: clean
 	@ rm -f $(NAME)
+	@ rm -rf libraries/libft42/libft.a
 
 re: fclean all
 

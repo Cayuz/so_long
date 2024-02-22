@@ -6,11 +6,11 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 15:50:44 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/19 16:05:57 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/02/22 19:20:44 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "so_long.h"
 
 static mlx_image_t* image;
 
@@ -47,13 +47,11 @@ void ft_keyhook(void* param)
 		image->instances[0].x += 5;
 }
 
-
-
 int32_t main(void)
 {
-	mlx_t* mlx;
+	mlx_t*			mlx;
 
-	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
+	if (!(mlx = mlx_init(WIDTH, HEIGHT, "so_long", true)))
 	{
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
@@ -70,6 +68,7 @@ int32_t main(void)
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
+	init_map();
 	mlx_loop_hook(mlx, ft_randomize, mlx);
 	mlx_loop_hook(mlx, ft_keyhook, mlx);
 	mlx_loop(mlx);
