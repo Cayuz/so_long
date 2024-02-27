@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/22 19:20:27 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/02/27 21:38:54 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 # define TILE_SIZE 64
 # define BPP sizeof(int32_t)
 
-# include "MLX42.h"
-# include "libft.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
+# include "/home/cavan-vl/Desktop/curriculum/so_long/libraries/MLX42/include/MLX42/MLX42.h"
+# include "/home/cavan-vl/Desktop/curriculum/so_long/libraries/libft42/inc/libft.h"
+# include "/home/cavan-vl/Desktop/curriculum/so_long/libraries/libft42/inc/ft_printf.h"
+# include "/home/cavan-vl/Desktop/curriculum/so_long/libraries/libft42/inc/get_next_line.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -36,15 +36,33 @@ typedef struct	s_map
 	int	row_count;
 }	t_map;
 
+typedef struct s_maplist
+{
+	char			*line;
+	struct s_maplist	*next;
+}	t_maplist;
+
+/*============MAIN==============*/
+
+void	init_map(void);
+
+/*==========list_utils========*/
+
+t_maplist	*last_list(t_maplist *lst);
+void	add_back(t_maplist **lst, t_maplist *new);
+t_maplist	*new_list(char *line);
+
 /*===========PARSE_MAP===========*/
 
-int	read_map(char **map_array, t_map map);
+t_maplist	*make_list(t_maplist *map_list, int fd);
+int	read_map(t_maplist *map_list, t_map *map);
 int	check_firstlast_line(char *line);
-int	check_everyother_line(char *line, t_map *map);
+int	check_everyother_line(char *line, t_map map);
 char **store_map(int fd, char **map_array, t_map *map);
 
 /*=============UTILS=============*/
 
-int	error_msg(char *msg);
+void	*ft_malloc(size_t size);
+int		error_msg(char *msg);
 
 #endif
