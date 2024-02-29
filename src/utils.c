@@ -6,16 +6,16 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 20:58:15 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/27 21:39:15 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/02/29 18:51:03 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "so_long.h"
 
 int	error_msg(char *msg)
 {
 	printf("Error: %s\n", msg);
-	return (-1);
+	exit(EXIT_FAILURE);
 }
 
 // int	error_exit(t_map *map, char *msg)

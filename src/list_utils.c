@@ -6,11 +6,11 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 20:23:47 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/27 21:37:34 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/02/29 19:05:39 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "so_long.h"
 
 t_maplist	*last_list(t_maplist *lst)
 {
@@ -48,4 +48,16 @@ t_maplist	*new_list(char *line)
 	node->line = line;
 	node->next = NULL;
 	return (node);
+}
+
+int	line_len(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] != '\n' && str[i] != '\0')
+		i++;
+	return (i);
 }

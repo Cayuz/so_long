@@ -6,7 +6,7 @@
 #    By: cavan-vl <cavan-vl@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/12 15:49:22 by cavan-vl      #+#    #+#                  #
-#    Updated: 2024/02/27 20:39:38 by cavan-vl      ########   odam.nl          #
+#    Updated: 2024/02/29 17:46:26 by cavan-vl      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,9 @@ libft:
 
 submodule:
 	@ git submodule update --init --recursive --remote
+
+run: $(NAME)
+	@ ./$(NAME)
 
 $(NAME): $(OBJ)
 	@ $(CC) $(OBJ) $(CFLAGS) $(HEADER) $(LIBS) -o $(NAME)

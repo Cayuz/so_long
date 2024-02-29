@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/27 21:38:54 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/02/29 18:33:41 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef struct	s_map
 
 typedef struct s_maplist
 {
-	char			*line;
+	char				*line;
+	int					index;
 	struct s_maplist	*next;
 }	t_maplist;
 
@@ -51,14 +52,15 @@ void	init_map(void);
 t_maplist	*last_list(t_maplist *lst);
 void	add_back(t_maplist **lst, t_maplist *new);
 t_maplist	*new_list(char *line);
+int	line_len(char *str);
 
 /*===========PARSE_MAP===========*/
 
 t_maplist	*make_list(t_maplist *map_list, int fd);
 int	read_map(t_maplist *map_list, t_map *map);
 int	check_firstlast_line(char *line);
-int	check_everyother_line(char *line, t_map map);
-char **store_map(int fd, char **map_array, t_map *map);
+int	check_everyother_line(char *line, t_map *map);
+char	**store_map(int fd, char **map_array, t_map *map);
 
 /*=============UTILS=============*/
 
