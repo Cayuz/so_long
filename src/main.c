@@ -6,41 +6,23 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 15:50:44 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/29 18:50:49 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/06 19:28:02 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(void)
+int main(int ac, char **av)
 {
-	init_map();
+	int	fd;
+
+	if (ac != 2)
+		error_msg("2 arguments only!");
+	ber_check(av[1]);
+	fd = fd_check(av[1]);
+	map(fd);
 	return (EXIT_SUCCESS);
 }
-
-// mlx_t*	mlx;
-// if (!(mlx = mlx_init(WIDTH, HEIGHT, "so_long", true)))
-// {
-// 	puts(mlx_strerror(mlx_errno));
-// 	return(EXIT_FAILURE);
-// }
-// if (!(image = mlx_new_image(mlx, 128, 128)))
-// {
-// 	mlx_close_window(mlx);
-// 	puts(mlx_strerror(mlx_errno));
-// 	return(EXIT_FAILURE);
-// }
-// if (mlx_image_to_window(mlx, image, 0, 0) == -1)
-// {
-// 	mlx_close_window(mlx);
-// 	puts(mlx_strerror(mlx_errno));
-// 	return(EXIT_FAILURE);
-// }
-// mlx_loop_hook(mlx, ft_randomize, mlx);
-// mlx_loop_hook(mlx, ft_keyhook, mlx);
-// mlx_loop(mlx);
-// mlx_terminate(mlx);
-
 // static mlx_image_t* image;
 
 // int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
@@ -75,3 +57,28 @@ int main(void)
 // 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
 // 		image->instances[0].x += 5;
 // }
+
+
+	// mlx_t*	mlx;
+
+	// if (!(mlx = mlx_init(WIDTH, HEIGHT, "so_long", true)))
+	// {
+	// 	puts(mlx_strerror(mlx_errno));
+	// 	return(EXIT_FAILURE);
+	// }
+	// if (!(image = mlx_new_image(mlx, 128, 128)))
+	// {
+	// 	mlx_close_window(mlx);
+	// 	puts(mlx_strerror(mlx_errno));
+	// 	return(EXIT_FAILURE);
+	// }
+	// if (mlx_image_to_window(mlx, image, 0, 0) == -1)
+	// {
+	// 	mlx_close_window(mlx);
+	// 	puts(mlx_strerror(mlx_errno));
+	// 	return(EXIT_FAILURE);
+	// }
+	// mlx_loop_hook(mlx, ft_randomize, mlx);
+	// mlx_loop_hook(mlx, ft_keyhook, mlx);
+	// mlx_loop(mlx);
+	// mlx_terminate(mlx);

@@ -6,40 +6,25 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/29 19:05:53 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/06 19:45:21 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_map(void)
+void	init_struct(t_map *map)
 {
-	int					fd;
-	static t_map		*map;
-	static t_maplist	*map_list;
-	t_maplist			*new_node;
-
-	map_list = NULL;
-	map = malloc(sizeof(t_map));
-	map->row_count = 1;
-	fd = open("/home/cavan-vl/Desktop/curriculum/so_long/dummy.ber", O_RDONLY);
-	if (fd == -1)
-		printf("FD wrong\n");
-	map_list = (t_maplist *)ft_malloc(sizeof(t_maplist));
-	map_list = new_list(get_next_line(fd));
-	while(1)
-	{
-		new_node = (t_maplist *)ft_malloc(sizeof(t_maplist));
-		new_node = new_list(get_next_line(fd));
-		if (new_node->line == NULL)
-			break ;
-		add_back(&map_list, new_node);
-		map->row_count += 1;
-	}
-	read_map(map_list, map);
+	map->exit = 0;
+	map->collectibles = 0;
+	map->player = 0;
+	map->column_count = 0;
+	map->row_count = 0;
+	map->player_x = 0;
+	map->player_y = 0;
+	map->valid_path = 0;
 }
 
-int	check_firstlast_line(char *line)
+void	check_walls(char *line)
 {
 	int	i;
 	
@@ -50,10 +35,9 @@ int	check_firstlast_line(char *line)
 			error_msg("Map is not surrounded by walls");
 		i++;
 	}
-	return(1);
 }
 
-int	check_everyother_line(char *line, t_map *map)
+void	validate_line(char *line, t_map *map)
 {
 	int	i;
 
@@ -62,29 +46,25 @@ int	check_everyother_line(char *line, t_map *map)
 		error_msg("Map is not surrounded by walls");
 	while (line[i] != '\0')
 	{
-		if (line[i] != 'E' && line[i] != '0' && line[i] != 'C' \
-		&& line[i] != 'P' && line[i] != '1' && line[i] != '\n')
+		if (line[i] != 'E' && line[i] != '0' && line[i] != 'C' &&
+		line[i] != 'P' && line[i] != '1' && line[map->column_count] != '\n')
 			error_msg("Invalid character found in map");
 		if (line[i] == 'E')
 			map->exit++;
 		if (line[i] == 'C')
-		{
 			map->collectibles++;
-			//validate_map(map_array)
-		}
 		if (line[i] == 'P')
 			map->player++;
 		i++;
 	}
-	return(1);
 }
 
-int read_map(t_maplist *map_list, t_map *map)
+void read_map(t_maplist *map_list, t_map *map)
 {
 	int i;
 
 	i = 0;
-	check_firstlast_line(map_list->line);
+	check_walls(map_list->line);
 	map->column_count = line_len(map_list->line);
 	map_list->index = 1;
 	while (map_list != NULL)
@@ -95,32 +75,48 @@ int read_map(t_maplist *map_list, t_map *map)
 			error_msg("Map is not rectangular");
 		if (map_list->index == map->row_count)
 		{
-			check_firstlast_line(map_list->line);
+			check_walls(map_list->line);
 			if (map->player != 1 || map->exit != 1 || map->collectibles < 1)
 				error_msg("Incorrect number of exits/players/collectibles");
-			return (1);
 		}
-		check_everyother_line(map_list->line, map);
-		map_list->next->index = i + 1;
+		validate_line(map_list->line, map);
+		if (map_list->next != NULL)
+			map_list->next->index = i + 1;
 		map_list = map_list->next;
 	}
-	return (0);
 }
 
-// char **store_map(int fd, char **map_array, t_map *map)
-// {
-// 	int		i;
-// 	char	*line;
+t_maplist	*make_list(t_map *map, int fd)
+{
+	t_maplist	*list;
+	t_maplist	*node;
+	
+	list = NULL;
+	list = (t_maplist *)ft_malloc(sizeof(t_maplist));
+	list = new_node(get_next_line(fd));
+	map->row_count = 1;
+	while(1)
+	{
+		node = (t_maplist *)ft_malloc(sizeof(t_maplist));
+		node = new_node(get_next_line(fd));
+		if (node->line == NULL)
+			break ;
+		add_back(&list, node);
+		map->row_count += 1;
+	}
+	return(list);
+}
 
-// 	i = 0;
-// 	line = get_next_line(fd);
-// 	map->column_count = line_len(line);
-// 	map_array[i] = line;
-// 	while(line[++i] != '\0')
-// 	{
-// 		line = get_next_line(fd);
-// 		map_array[i] = line;
-// 	}
-// 	map->row_count = i;
-// 	return(map_array);
-// }
+void	map(int fd)
+{
+	t_map		*map;
+	char		**map_array;
+	t_maplist	*map_list;
+
+	map = ft_malloc(sizeof(t_map));
+	init_struct(map);
+	map_list = make_list(map, fd);
+	read_map(map_list, map);
+	map_array = list_to_array(map_list, *map);
+	get_player_pos(map_array, map);
+}

@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   utils.c                                            :+:    :+:            */
+/*   check_1.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/19 20:58:15 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/06 19:23:47 by cavan-vl      ########   odam.nl         */
+/*   Created: 2024/03/06 18:35:03 by cavan-vl      #+#    #+#                 */
+/*   Updated: 2024/03/06 18:53:55 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	error_msg(char *msg)
+int	fd_check(char *filename)
 {
-	printf("Error: %s\n", msg);
-	exit(EXIT_FAILURE);
+	int	fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		error_msg("FD wrong\n");
+	return(fd);
 }
 
-// int	error_exit(t_map *map, char *msg)
-// {
-// 	ft_printf("Error: %s\n", msg);
-// 	clean_up();
-// 	exit(EXIT_FAILURE);
-// }
-
-
-void	*ft_malloc(size_t size)
+void ber_check(char *filename)
 {
-	void	*alloc;
-
-	alloc = malloc(size);
-	if (alloc == NULL)
-		error_msg("allocation failed");
-	return (alloc);
+	int length;
+	
+	length = ft_strlen(filename);
+	if (length >= 4)
+	{
+		if (ft_strncmp(filename + length - 4, ".ber", 4) != 0)
+			error_msg("Invalid file!");
+	}
+	else if (length < 4)
+		error_msg("Invalid file!");
 }

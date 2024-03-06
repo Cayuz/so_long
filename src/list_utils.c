@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 20:23:47 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/02/29 19:05:39 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/06 14:24:35 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	add_back(t_maplist **lst, t_maplist *new)
 		ptr->next = new;
 }
 
-t_maplist	*new_list(char *line)
+t_maplist	*new_node(char *line)
 {
 	t_maplist	*node;
 
