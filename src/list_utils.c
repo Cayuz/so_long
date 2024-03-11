@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 20:23:47 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/06 14:24:35 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/11 14:28:06 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ t_maplist	*new_node(char *line)
 {
 	t_maplist	*node;
 
-	node = (t_maplist *)malloc(sizeof(t_maplist));
-	if (node == NULL)
-		return (NULL);
+	node = (t_maplist *)ft_malloc(sizeof(t_maplist));
 	node->line = line;
 	node->next = NULL;
 	return (node);

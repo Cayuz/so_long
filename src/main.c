@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 15:50:44 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/06 19:28:02 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/11 14:29:52 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int ac, char **av)
 	int	fd;
 
 	if (ac != 2)
-		error_msg("2 arguments only!");
+		error_msg("Program needs 2 arguments");
 	ber_check(av[1]);
 	fd = fd_check(av[1]);
 	map(fd);
