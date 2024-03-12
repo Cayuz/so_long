@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/06 19:45:21 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/12 17:47:28 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_struct(t_map *map)
 	map->valid_path = 0;
 }
 
-void	check_walls(char *line)
+void	check_outer_walls(char *line)
 {
 	int	i;
 	
@@ -42,7 +42,7 @@ void	validate_line(char *line, t_map *map)
 	int	i;
 
 	i = 0;
-	if (line[0] != '1' && line[line_len(line)] != '1')
+	if (line[0] != '1' || line[map->column_count - 1] != '1')
 		error_msg("Map is not surrounded by walls");
 	while (line[i] != '\0')
 	{
@@ -64,18 +64,17 @@ void read_map(t_maplist *map_list, t_map *map)
 	int i;
 
 	i = 0;
-	check_walls(map_list->line);
+	check_outer_walls(map_list->line);
 	map->column_count = line_len(map_list->line);
 	map_list->index = 1;
 	while (map_list != NULL)
 	{
 		i += 1;
-		printf("map index: %i\n", map_list->index);
 		if (line_len(map_list->line) != map->column_count)
 			error_msg("Map is not rectangular");
 		if (map_list->index == map->row_count)
 		{
-			check_walls(map_list->line);
+			check_outer_walls(map_list->line);
 			if (map->player != 1 || map->exit != 1 || map->collectibles < 1)
 				error_msg("Incorrect number of exits/players/collectibles");
 		}
@@ -91,7 +90,6 @@ t_maplist	*make_list(t_map *map, int fd)
 	t_maplist	*list;
 	t_maplist	*node;
 	
-	list = NULL;
 	list = (t_maplist *)ft_malloc(sizeof(t_maplist));
 	list = new_node(get_next_line(fd));
 	map->row_count = 1;
@@ -118,5 +116,5 @@ void	map(int fd)
 	map_list = make_list(map, fd);
 	read_map(map_list, map);
 	map_array = list_to_array(map_list, *map);
-	get_player_pos(map_array, map);
+	
 }

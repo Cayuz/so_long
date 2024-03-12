@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/06 18:35:03 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/06 18:53:55 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/12 15:06:49 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void ber_check(char *filename)
 	if (length >= 4)
 	{
 		if (ft_strncmp(filename + length - 4, ".ber", 4) != 0)
-			error_msg("Invalid file!");
+			error_msg("Invalid file, must be .ber!");
 	}
 	else if (length < 4)
-		error_msg("Invalid file!");
+		error_msg("Invalid file, must be .ber!");
 }

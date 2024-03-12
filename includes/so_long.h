@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/06 19:45:07 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/12 17:47:28 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			line_len(char *str);
 
 t_maplist	*make_list(t_map *map, int fd);
 void		read_map(t_maplist *map_list, t_map *map);
-void		check_walls(char *line);
+void		check_outer_walls(char *line);
 void		validate_line(char *line, t_map *map);
 char		**store_map(int fd, char **map_array, t_map *map);
 
@@ -69,11 +69,12 @@ char		**store_map(int fd, char **map_array, t_map *map);
 
 void	*ft_malloc(size_t size);
 int		error_msg(char *msg);
+void	print_map(char **array, t_map map);
 
 /*===========CHECK MAP===========*/
 
 char	**list_to_array(t_maplist *list, t_map map);
-void	get_player_pos(char **array, t_map *map);
+void	player_pos(char **array, t_map map);
 bool	flood_fill(char **array, int x, int y, t_map map);
 
 int		fd_check(char *filename);
