@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/12 17:47:28 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/20 17:50:15 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,18 @@ typedef struct s_maplist
 	struct s_maplist	*next;
 }	t_maplist;
 
+typedef struct s_image
+{
+	mlx_image_t	*player;
+	mlx_image_t	*wall;
+	mlx_image_t	*floor;
+	mlx_image_t	*exit;
+	mlx_image_t	*collectable;
+}	t_image;
+
 /*=============MAIN=============*/
 
-void	map(int fd);
+t_map	*map_init(int fd, t_maplist*map_list);
 
 /*==========LIST UTILS==========*/
 
@@ -76,6 +85,16 @@ void	print_map(char **array, t_map map);
 char	**list_to_array(t_maplist *list, t_map map);
 void	player_pos(char **array, t_map map);
 bool	flood_fill(char **array, int x, int y, t_map map);
+
+/*==========RENDER=========*/
+
+void	render(mlx, map_list);
+void	player_init(mlx_t *mlx, t_image *image);
+void	wall_init(mlx_t *mlx, t_image *image);
+void	floor_init(mlx_t *mlx, t_image *image);
+void	exit_init(mlx_t *mlx, t_image *image);
+void	collectable_init(mlx_t *mlx, t_image *image);
+
 
 int		fd_check(char *filename);
 void	ber_check(char *filename);

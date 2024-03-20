@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 15:50:44 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/12 17:26:20 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/20 17:48:36 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 int main(int ac, char **av)
 {
-	int	fd;
+	mlx_t	*mlx;
+	t_map	*map;
+	int		fd;
 
 	if (ac != 2)
 		error_msg("Program needs 2 arguments");
 	ber_check(av[1]);
 	fd = fd_check(av[1]);
-	map(fd);
+	map = map_init(fd, mlx);
+	mlx = mlx_init(map->column_count * 32, map->row_count * 32,
+		"so_long", false);
 	return (EXIT_SUCCESS);
 }
 // static mlx_image_t* image;

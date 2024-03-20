@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parse_map.c                                        :+:    :+:            */
+/*   parse.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/12 17:47:28 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/20 17:49:50 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ t_maplist	*make_list(t_map *map, int fd)
 	return(list);
 }
 
-void	map(int fd)
+t_map	*map_init(int fd, mlx_t *mlx)
 {
 	t_map		*map;
 	char		**map_array;
@@ -116,5 +116,6 @@ void	map(int fd)
 	map_list = make_list(map, fd);
 	read_map(map_list, map);
 	map_array = list_to_array(map_list, *map);
-	
+	render(mlx, map_list);
+	return (map);
 }
