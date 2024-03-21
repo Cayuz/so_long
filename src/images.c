@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:10:09 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/20 17:11:15 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/21 18:51:50 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	wall_init(mlx_t *mlx, t_image *image)
 {
 	mlx_texture_t	*wall;
 	
-	wall = mlx_load_png("./sprites/foxdown.png");
+	wall = mlx_load_png("./sprites/wall.png");
 	if (!wall)
 		error_msg("failed to load png");
 	image->wall = mlx_texture_to_image(mlx, wall);
@@ -38,7 +38,7 @@ void	floor_init(mlx_t *mlx, t_image *image)
 {
 	mlx_texture_t	*floor;
 	
-	floor = mlx_load_png("./sprites/foxdown.png");
+	floor = mlx_load_png("./sprites/grass.png");
 	if (!floor)
 		error_msg("failed to load png");
 	image->floor = mlx_texture_to_image(mlx, floor);
@@ -49,7 +49,7 @@ void	exit_init(mlx_t *mlx, t_image *image)
 {
 	mlx_texture_t	*exit;
 	
-	exit = mlx_load_png("./sprites/foxdown.png");
+	exit = mlx_load_png("./sprites/exit.png");
 	if (!exit)
 		error_msg("failed to load png");
 	image->exit = mlx_texture_to_image(mlx, exit);
@@ -60,7 +60,7 @@ void	collectable_init(mlx_t *mlx, t_image *image)
 {
 	mlx_texture_t	*collectable;
 	
-	collectable = mlx_load_png("./sprites/foxdown.png");
+	collectable = mlx_load_png("./sprites/collectable.png");
 	if (!collectable)
 		error_msg("failed to load png");
 	image->collectable = mlx_texture_to_image(mlx, collectable);

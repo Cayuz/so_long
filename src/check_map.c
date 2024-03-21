@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/06 14:37:02 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/12 17:37:35 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/21 18:41:15 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@ char	**list_to_array(t_maplist *list, t_map map)
 	t_maplist	*current;
 	int			i;
 
-	array = (char **)ft_malloc(map.row_count * (sizeof(char *)));
+	array = (char **)ft_malloc((map.row_count + 1 )* (sizeof(char *)));
 	i = 0;
 	current = list;
 	while(current != NULL)
 	{
 		array[i] = ft_strdup(current->line);
+		printf("array[%i]: %s\n", i, array[i]);
+		printf("node index: [%i]\n", current->index);
 		i++;
 		current = current->next;
 	}
+	printf("i = %i\n", i);
 	array[i] = NULL;
 	player_pos(array, map);
 	return(array);
@@ -42,8 +45,10 @@ void	player_pos(char **array, t_map map)
 	while(y < map.row_count)
 	{
 		x = 0;
+		printf("\n");
 		while(x < map.column_count)
 		{
+			printf("%c", array[y][x]);
 			if (array[y][x] == 'P')
 			{
 				if (flood_fill(array, x, y, map) == false)

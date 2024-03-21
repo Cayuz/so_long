@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 15:53:36 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/20 17:49:42 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/21 17:05:40 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	render(mlx_t *mlx, t_maplist *map)
 {
 	t_image *images;
 
+	images = (t_image *)ft_malloc(sizeof(t_image *));
 	texture_init(mlx, images);
 	background(mlx, map, images);
 	traverse_map(map, images, mlx);
@@ -23,11 +24,11 @@ void	render(mlx_t *mlx, t_maplist *map)
 
 void	texture_init(mlx_t *mlx, t_image *image)
 {
-	player_texture(mlx, image);
-	wall_texture(mlx, image);
-	floor_texture(mlx, image);
-	exit_texture(mlx, image);
-	collectable_texture(mlx, image);
+	player_init(mlx, image);
+	wall_init(mlx, image);
+	floor_init(mlx, image);
+	exit_init(mlx, image);
+	collectable_init(mlx, image);
 }
 
 void	background(mlx_t *mlx, t_maplist *map, t_image *image)

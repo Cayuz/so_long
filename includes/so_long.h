@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/20 17:50:15 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/21 17:06:36 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_image
 
 /*=============MAIN=============*/
 
-t_map	*map_init(int fd, t_maplist*map_list);
+t_map	*map_init(int fd);
 
 /*==========LIST UTILS==========*/
 
@@ -73,6 +73,7 @@ void		read_map(t_maplist *map_list, t_map *map);
 void		check_outer_walls(char *line);
 void		validate_line(char *line, t_map *map);
 char		**store_map(int fd, char **map_array, t_map *map);
+void		init_struct(t_map *map);
 
 /*=============UTILS=============*/
 
@@ -88,12 +89,16 @@ bool	flood_fill(char **array, int x, int y, t_map map);
 
 /*==========RENDER=========*/
 
-void	render(mlx, map_list);
+void	render(mlx_t *mlx, t_maplist *map_list);
 void	player_init(mlx_t *mlx, t_image *image);
 void	wall_init(mlx_t *mlx, t_image *image);
 void	floor_init(mlx_t *mlx, t_image *image);
 void	exit_init(mlx_t *mlx, t_image *image);
 void	collectable_init(mlx_t *mlx, t_image *image);
+void	texture_init(mlx_t *mlx, t_image *image);
+void	background(mlx_t *mlx, t_maplist *map, t_image *image);
+void	traverse_map(t_maplist *map_list, t_image *img, mlx_t *mlx);
+void	display_img(mlx_t *mlx, int x, int y, char character, t_image *images);
 
 
 int		fd_check(char *filename);

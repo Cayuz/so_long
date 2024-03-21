@@ -6,23 +6,11 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/20 17:49:50 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/21 18:44:17 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	init_struct(t_map *map)
-{
-	map->exit = 0;
-	map->collectibles = 0;
-	map->player = 0;
-	map->column_count = 0;
-	map->row_count = 0;
-	map->player_x = 0;
-	map->player_y = 0;
-	map->valid_path = 0;
-}
 
 void	check_outer_walls(char *line)
 {
@@ -90,7 +78,7 @@ t_maplist	*make_list(t_map *map, int fd)
 	t_maplist	*list;
 	t_maplist	*node;
 	
-	list = (t_maplist *)ft_malloc(sizeof(t_maplist));
+	// list = (t_maplist *)ft_malloc(sizeof(t_maplist));
 	list = new_node(get_next_line(fd));
 	map->row_count = 1;
 	while(1)
@@ -105,16 +93,19 @@ t_maplist	*make_list(t_map *map, int fd)
 	return(list);
 }
 
-t_map	*map_init(int fd, mlx_t *mlx)
+t_map	*map_init(int fd)
 {
 	t_map		*map;
 	char		**map_array;
 	t_maplist	*map_list;
+	mlx_t	*mlx;
 
-	map = ft_malloc(sizeof(t_map));
+	map = (t_map *)ft_malloc(sizeof(t_map));
 	init_struct(map);
 	map_list = make_list(map, fd);
 	read_map(map_list, map);
+	mlx = mlx_init(map->column_count * 32, map->row_count * 32,
+		"so_long", false);
 	map_array = list_to_array(map_list, *map);
 	render(mlx, map_list);
 	return (map);
