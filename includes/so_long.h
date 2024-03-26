@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/21 17:06:36 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/26 16:57:07 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define WIDTH 1000
 # define HEIGHT 700
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 # define BPP sizeof(int32_t)
 
 # include "/home/cavan-vl/Desktop/curriculum/so_long/libraries/MLX42/include/MLX42/MLX42.h"
@@ -39,12 +39,22 @@ typedef struct	s_map
 	int	valid_path;
 }	t_map;
 
-typedef struct s_maplist
+typedef struct s_list
+
 {
 	char				*line;
 	int					index;
-	struct s_maplist	*next;
-}	t_maplist;
+	struct s_list		*next;
+}	t_list;
+
+typedef struct s_texture
+{
+	mlx_texture_t	*player;
+	mlx_texture_t	*wall;
+	mlx_texture_t	*floor;
+	mlx_texture_t	*exit;
+	mlx_texture_t	*collectable;
+}	t_texture;
 
 typedef struct s_image
 {
@@ -53,27 +63,37 @@ typedef struct s_image
 	mlx_image_t	*floor;
 	mlx_image_t	*exit;
 	mlx_image_t	*collectable;
+	t_texture	textures;
 }	t_image;
+
+
+typedef struct	s_game
+{
+	t_map	*map;
+	t_image	images;
+	t_list	*list;
+}	t_game;
 
 /*=============MAIN=============*/
 
-t_map	*map_init(int fd);
+t_map	*map_init(int fd, t_game *game, t_map *map);
 
-/*==========LIST UTILS==========*/
+/*==========LIST_UTILS==========*/
 
-t_maplist	*last_list(t_maplist *lst);
-void		add_back(t_maplist **lst, t_maplist *new);
-t_maplist	*new_node(char *line);
-int			line_len(char *str);
+t_list	*last_list(t_list *lst);
+void	add_back(t_list **lst, t_list *new);
+t_list	*new_node(char *line);
+int		line_len(char *str);
+int		list_size(t_list *list);
 
 /*===========PARSE MAP===========*/
 
-t_maplist	*make_list(t_map *map, int fd);
-void		read_map(t_maplist *map_list, t_map *map);
-void		check_outer_walls(char *line);
-void		validate_line(char *line, t_map *map);
-char		**store_map(int fd, char **map_array, t_map *map);
-void		init_struct(t_map *map);
+t_list	*make_list(int fd);
+void	read_map(t_list *list, t_map *map);
+void	check_outer_walls(char *line);
+void	validate_line(char *line, t_map *map);
+char	**store_map(int fd, char **map_array, t_map *map);
+void	init_struct(t_map *map);
 
 /*=============UTILS=============*/
 
@@ -83,23 +103,23 @@ void	print_map(char **array, t_map map);
 
 /*===========CHECK MAP===========*/
 
-char	**list_to_array(t_maplist *list, t_map map);
+char	**list_to_array(t_list *list, t_map map);
 void	player_pos(char **array, t_map map);
 bool	flood_fill(char **array, int x, int y, t_map map);
 
-/*==========RENDER=========*/
+/*=============RENDER============*/
 
-void	render(mlx_t *mlx, t_maplist *map_list);
-void	player_init(mlx_t *mlx, t_image *image);
-void	wall_init(mlx_t *mlx, t_image *image);
-void	floor_init(mlx_t *mlx, t_image *image);
-void	exit_init(mlx_t *mlx, t_image *image);
-void	collectable_init(mlx_t *mlx, t_image *image);
-void	texture_init(mlx_t *mlx, t_image *image);
-void	background(mlx_t *mlx, t_maplist *map, t_image *image);
-void	traverse_map(t_maplist *map_list, t_image *img, mlx_t *mlx);
-void	display_img(mlx_t *mlx, int x, int y, char character, t_image *images);
+void	render(mlx_t *mlx, t_list *map, t_game *game);
+void	player(mlx_t *mlx, t_image *image);
+void	walls(mlx_t *mlx, t_image *image);
+void	floors(mlx_t *mlx, t_image *image);
+void	exits(mlx_t *mlx, t_image *image);
+void	collect(mlx_t *mlx, t_image *image);
+void	background(mlx_t *mlx, t_list *map, t_image image);
+void	traverse_map(t_list *map_list, t_image img, mlx_t *mlx);
+void	display_img(mlx_t *mlx, int x, int y, char character, t_image image);
 
+// void	init_struct2(t_image *images);
 
 int		fd_check(char *filename);
 void	ber_check(char *filename);

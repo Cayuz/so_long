@@ -6,15 +6,16 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 20:23:47 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/11 14:28:06 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/26 16:46:28 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_maplist	*last_list(t_maplist *lst)
+t_list	*last_list(t_list *lst)
 {
-	t_maplist	*temp;
+	t_list
+	*temp;
 
 	if (lst == NULL)
 		return (NULL);
@@ -24,9 +25,10 @@ t_maplist	*last_list(t_maplist *lst)
 	return (temp);
 }
 
-void	add_back(t_maplist **lst, t_maplist *new)
+void	add_back(t_list **lst, t_list *new)
 {
-	t_maplist	*ptr;
+	t_list
+	*ptr;
 
 	if (*lst == NULL)
 	{
@@ -38,11 +40,12 @@ void	add_back(t_maplist **lst, t_maplist *new)
 		ptr->next = new;
 }
 
-t_maplist	*new_node(char *line)
+t_list	*new_node(char *line)
 {
-	t_maplist	*node;
+	t_list
+	*node;
 
-	node = (t_maplist *)ft_malloc(sizeof(t_maplist));
+	node = (t_list *)ft_malloc(sizeof(t_list));
 	node->line = line;
 	node->next = NULL;
 	return (node);
@@ -57,5 +60,20 @@ int	line_len(char *str)
 		return (0);
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
+	return (i);
+}
+
+int	list_size(t_list *list)
+{
+	t_list *temp;
+	int		i;
+
+	i = 0;
+	temp = list;
+	while(temp)
+	{
+		temp = temp->next;
+		i++;
+	}
 	return (i);
 }

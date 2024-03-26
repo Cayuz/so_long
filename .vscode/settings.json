@@ -2,6 +2,8 @@
 	"cmake.sourceDirectory": "/home/cavan-vl/Desktop/curriculum/so_long/libraries/MLX42",
 	"files.associations": {
 		"C": "keyhr.42-c-format",
-		"array": "c"
+		"array": "c",
+		"cmath": "c",
+		"ranges": "c"
 	}
 }

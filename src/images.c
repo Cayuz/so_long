@@ -6,63 +6,53 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:10:09 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/21 18:51:50 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/26 15:58:10 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	player_init(mlx_t *mlx, t_image *image)
+void	player(mlx_t *mlx, t_image *image)
 {
-	mlx_texture_t	*player;
-	
-	player = mlx_load_png("./sprites/foxdown.png");
-	if (!player)
+	image->textures.player = mlx_load_png("./sprites/foxdown.png");
+	if (!image->textures.player)
 		error_msg("failed to load png");
-	image->player = mlx_texture_to_image(mlx, player);
-	mlx_delete_texture(player);
+	image->player = mlx_texture_to_image(mlx, image->textures.player);
+	mlx_delete_texture(image->textures.player);
 }
 
-void	wall_init(mlx_t *mlx, t_image *image)
+void	walls(mlx_t *mlx, t_image *image)
 {
-	mlx_texture_t	*wall;
-	
-	wall = mlx_load_png("./sprites/wall.png");
-	if (!wall)
+	image->textures.wall = mlx_load_png("./sprites/wall.png");
+	if (!image->textures.wall)
 		error_msg("failed to load png");
-	image->wall = mlx_texture_to_image(mlx, wall);
-	mlx_delete_texture(wall);
+	image->wall = mlx_texture_to_image(mlx, image->textures.wall);
+	mlx_delete_texture(image->textures.wall);
+	}
+
+void	floors(mlx_t *mlx, t_image *image)
+{
+	image->textures.floor = mlx_load_png("./sprites/grass.png");
+	if (!image->textures.floor)
+		error_msg("failed to load png");
+	image->floor = mlx_texture_to_image(mlx, image->textures.floor);
+	mlx_delete_texture(image->textures.floor);
 }
 
-void	floor_init(mlx_t *mlx, t_image *image)
+void	exits(mlx_t *mlx, t_image *image)
 {
-	mlx_texture_t	*floor;
-	
-	floor = mlx_load_png("./sprites/grass.png");
-	if (!floor)
+	image->textures.exit = mlx_load_png("./sprites/exit.png");
+	if (!image->textures.exit)
 		error_msg("failed to load png");
-	image->floor = mlx_texture_to_image(mlx, floor);
-	mlx_delete_texture(floor);
+	image->exit = mlx_texture_to_image(mlx, image->textures.exit);
+	mlx_delete_texture(image->textures.exit);
 }
 
-void	exit_init(mlx_t *mlx, t_image *image)
+void	collect(mlx_t *mlx, t_image *image)
 {
-	mlx_texture_t	*exit;
-	
-	exit = mlx_load_png("./sprites/exit.png");
-	if (!exit)
+	image->textures.collectable = mlx_load_png("./sprites/collectable.png");
+	if (!image->textures.collectable)
 		error_msg("failed to load png");
-	image->exit = mlx_texture_to_image(mlx, exit);
-	mlx_delete_texture(exit);
-}
-
-void	collectable_init(mlx_t *mlx, t_image *image)
-{
-	mlx_texture_t	*collectable;
-	
-	collectable = mlx_load_png("./sprites/collectable.png");
-	if (!collectable)
-		error_msg("failed to load png");
-	image->collectable = mlx_texture_to_image(mlx, collectable);
-	mlx_delete_texture(collectable);
+	image->collectable = mlx_texture_to_image(mlx, image->textures.collectable);
+	mlx_delete_texture(image->textures.collectable);
 }
