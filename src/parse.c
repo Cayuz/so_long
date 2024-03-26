@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/26 16:56:55 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/26 19:30:04 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	validate_line(char *line, t_map *map)
 	i = 0;
 	if (line[0] != '1' || line[map->column_count - 1] != '1')
 		error_msg("Map is not surrounded by walls");
+	printf("line: %s\n", line);
 	while (line[i] != '\0')
 	{
 		if (line[i] != 'E' && line[i] != '0' && line[i] != 'C' &&
@@ -92,14 +93,14 @@ t_list *make_list(int fd)
 	return(list);
 }
 
-t_map	*map_init(int fd, t_game *game, t_map *map)
+t_map	*map_init(int fd, t_game *game)
 {
 	char	**map_array;
-	// t_list	*map_list;
 
-	// init_struct(map);
+	game->map = (t_map *)ft_malloc(sizeof(t_map));
+	init_struct(game->map);
 	game->list = make_list(fd);
-	read_map(game->list, map);
-	map_array = list_to_array(game->list, *map);
-	return (map);
+	read_map(game->list, game->map);
+	map_array = list_to_array(game->list, game->map);
+	return (game->map);
 }

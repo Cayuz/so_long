@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/26 16:57:07 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/26 19:40:20 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct	s_game
 
 /*=============MAIN=============*/
 
-t_map	*map_init(int fd, t_game *game, t_map *map);
+t_map	*map_init(int fd, t_game *game);
 
 /*==========LIST_UTILS==========*/
 
@@ -103,9 +103,9 @@ void	print_map(char **array, t_map map);
 
 /*===========CHECK MAP===========*/
 
-char	**list_to_array(t_list *list, t_map map);
+char	**list_to_array(t_list *list, t_map *map);
 void	player_pos(char **array, t_map map);
-bool	flood_fill(char **array, int x, int y, t_map map);
+bool	flood_fill(char **array, int x, int y, t_map *map);
 
 /*=============RENDER============*/
 
@@ -122,6 +122,7 @@ void	display_img(mlx_t *mlx, int x, int y, char character, t_image image);
 // void	init_struct2(t_image *images);
 
 int		fd_check(char *filename);
+void	init_struct2(t_image *images, mlx_t *mlx);
 void	ber_check(char *filename);
 
 #endif

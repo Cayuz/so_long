@@ -6,7 +6,7 @@
 #    By: cavan-vl <cavan-vl@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/12 15:49:22 by cavan-vl      #+#    #+#                  #
-#    Updated: 2024/03/21 18:44:41 by cavan-vl      ########   odam.nl          #
+#    Updated: 2024/03/26 19:34:31 by cavan-vl      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME			:= so_long
 LIBMLX			:= ./libraries/MLX42
 LIBFT			:= ./libraries/libft42
 
-CFLAGS			:= -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS			:= -Wall -Werror -Wextra -g
 CC				:= cc -Ofast
 LIBS			:= $(LIBFT)/libft.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 HEADER			:= -I ./includes -I $(LIBMLX)/include/MLX42 -I $(LIBFT)/inc

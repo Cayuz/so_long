@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:34:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/26 15:19:58 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/26 19:39:43 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	init_struct(t_map *map)
 	map->valid_path = 0;
 }
 
-// void	init_struct2(t_image *images)
-// {
-// 	images->floor = NULL;
-// 	images->collectable = NULL;
-// 	images->exit = NULL;
-// 	images->player = NULL;
-// 	images->wall = NULL;
-// }
+void	init_struct2(t_image *images, mlx_t *mlx)
+{
+	floors(mlx, images);
+	exits(mlx, images);
+	player(mlx, images);
+	collect(mlx, images);
+	walls(mlx, images);
+}

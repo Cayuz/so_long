@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 15:50:44 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/26 16:22:29 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/26 19:47:22 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ int main(int ac, char **av)
 		error_msg("Program needs 2 arguments");
 	ber_check(av[1]);
 	fd = fd_check(av[1]);
-	game.map = map_init(fd, &game, game.map);
-	if (!(mlx = mlx_init(game.map->column_count * 32, game.map->row_count * 32, \
-		"so_long", false)))
+	game.map = map_init(fd, &game);
+	if (!(mlx = mlx_init(game.map->column_count * WIDTH, game.map->row_count * HEIGHT, \
+		"so_long", true)))
 		error_msg("oops");
 	render(mlx, game.list, &game);
+	mlx_loop(mlx);
 	return (EXIT_SUCCESS);
 }
 // static mlx_image_t* image;

@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 15:53:36 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/26 15:52:28 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/26 19:40:36 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	render(mlx_t *mlx, t_list *map, t_game *game)
 {
-	// init_struct2(images);
+	init_struct2(&game->images, mlx);
 	background(mlx, map, game->images);
 	traverse_map(map, game->images, mlx);
 }
