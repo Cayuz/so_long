@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:10:09 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/26 15:58:10 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/28 20:29:06 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	player(mlx_t *mlx, t_image *image)
 {
-	image->textures.player = mlx_load_png("./sprites/foxdown.png");
+	image->textures.player = mlx_load_png("./sprites/player.png");
 	if (!image->textures.player)
 		error_msg("failed to load png");
 	image->player = mlx_texture_to_image(mlx, image->textures.player);
@@ -50,9 +50,9 @@ void	exits(mlx_t *mlx, t_image *image)
 
 void	collect(mlx_t *mlx, t_image *image)
 {
-	image->textures.collectable = mlx_load_png("./sprites/collectable.png");
-	if (!image->textures.collectable)
+	image->textures.collect = mlx_load_png("./sprites/collectable.png");
+	if (!image->textures.collect)
 		error_msg("failed to load png");
-	image->collectable = mlx_texture_to_image(mlx, image->textures.collectable);
-	mlx_delete_texture(image->textures.collectable);
+	image->collect = mlx_texture_to_image(mlx, image->textures.collect);
+	mlx_delete_texture(image->textures.collect);
 }

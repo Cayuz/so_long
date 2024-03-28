@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/06 14:37:02 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/26 19:20:56 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/28 20:14:03 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**list_to_array(t_list *list, t_map *map)
 	int		i;
 
 	map->row_count = list_size(list);
-	array = (char **)ft_malloc((map->row_count + 1 ) * (sizeof(char *)));
+	array = (char **)ft_malloc((map->row_count + 1) * (sizeof(char *)));
 	i = 0;
 	current = list;
 	while(current != NULL)

@@ -6,16 +6,16 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/26 19:40:20 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/28 19:57:46 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define WIDTH 1000
-# define HEIGHT 700
-# define TILE_SIZE 32
+# define WIDTH 100
+# define HEIGHT 100
+# define TILE_SIZE 64
 # define BPP sizeof(int32_t)
 
 # include "/home/cavan-vl/Desktop/curriculum/so_long/libraries/MLX42/include/MLX42/MLX42.h"
@@ -40,7 +40,6 @@ typedef struct	s_map
 }	t_map;
 
 typedef struct s_list
-
 {
 	char				*line;
 	int					index;
@@ -53,7 +52,7 @@ typedef struct s_texture
 	mlx_texture_t	*wall;
 	mlx_texture_t	*floor;
 	mlx_texture_t	*exit;
-	mlx_texture_t	*collectable;
+	mlx_texture_t	*collect;
 }	t_texture;
 
 typedef struct s_image
@@ -62,7 +61,7 @@ typedef struct s_image
 	mlx_image_t	*wall;
 	mlx_image_t	*floor;
 	mlx_image_t	*exit;
-	mlx_image_t	*collectable;
+	mlx_image_t	*collect;
 	t_texture	textures;
 }	t_image;
 
@@ -115,7 +114,7 @@ void	walls(mlx_t *mlx, t_image *image);
 void	floors(mlx_t *mlx, t_image *image);
 void	exits(mlx_t *mlx, t_image *image);
 void	collect(mlx_t *mlx, t_image *image);
-void	background(mlx_t *mlx, t_list *map, t_image image);
+void	background(mlx_t *mlx, t_game *game);
 void	traverse_map(t_list *map_list, t_image img, mlx_t *mlx);
 void	display_img(mlx_t *mlx, int x, int y, char character, t_image image);
 

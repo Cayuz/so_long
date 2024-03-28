@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/26 19:30:04 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/28 19:42:06 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,43 @@ void	check_outer_walls(char *line)
 	}
 }
 
+// void	validate_map(t_map *map, t_list *list)
+// {
+// 	t_list	*temp;
+// 	int		i;
+
+// 	i = 0;
+// 	temp = list;
+// 	while(temp)
+// 	{
+// 		i = 0;
+// 		while(temp->line[i])
+// 		{
+// 			if (temp->line[i] == 'P')
+// 				map->player++;
+// 			else if (temp->line[i] == 'C')
+// 				map->collectibles++;
+// 			else if (temp->line[i] == 'E')
+// 				map->exit++;
+// 			else if (temp->line[i] == '0')
+// 				i++;
+// 			else if (temp->line[i] == '1')
+// 				i++;
+// 			else
+// 				error_msg("Invalid character found in map");
+			
+// 		}
+// 	}
+// }
+
 void	validate_line(char *line, t_map *map)
 {
 	int	i;
 
 	i = 0;
-	if (line[0] != '1' || line[map->column_count - 1] != '1')
-		error_msg("Map is not surrounded by walls");
-	printf("line: %s\n", line);
-	while (line[i] != '\0')
+	while(line[i] != '\0')
 	{
-		if (line[i] != 'E' && line[i] != '0' && line[i] != 'C' &&
-		line[i] != 'P' && line[i] != '1' && line[map->column_count] != '\n')
+		if (!ft_strchr("PEC01\n", (int)line[i]))
 			error_msg("Invalid character found in map");
 		if (line[i] == 'E')
 			map->exit++;
@@ -89,7 +114,6 @@ t_list *make_list(int fd)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	// map->row_count = list_size(list);
 	return(list);
 }
 

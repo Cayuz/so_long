@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 15:53:36 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/26 19:40:36 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/28 20:43:11 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,26 @@
 void	render(mlx_t *mlx, t_list *map, t_game *game)
 {
 	init_struct2(&game->images, mlx);
-	background(mlx, map, game->images);
+	background(mlx, game);
 	traverse_map(map, game->images, mlx);
 }
 
-void	background(mlx_t *mlx, t_list *map, t_image image)
+void	background(mlx_t *mlx, t_game *game)
 {
 	int		x;
 	int		y;
 	t_list	*temp;
 
 	y = 0;
-	temp = map;
-	while(temp != NULL)
+	temp = game->list;
+	while(temp != NULL && y < game->map->row_count)
 	{
 		x = 0;
-		while(temp->line[x] != '\0')
+		while(x < game->map->column_count)
 		{
-			mlx_image_to_window(mlx, image.floor, x, y);
+			if (mlx_image_to_window(mlx, game->images.floor,
+					x * TILE_SIZE, y * TILE_SIZE) < 0)
+				error_msg("failed to load image");
 			x++;
 		}
 		y++;
@@ -66,13 +68,13 @@ void	traverse_map(t_list *map_list, t_image img, mlx_t *mlx)
 void	display_img(mlx_t *mlx, int x, int y, char character, t_image image)
 {
 	if (character == 'P')
-		mlx_image_to_window(mlx, image.player, x , y);
+		mlx_image_to_window(mlx, image.player, x * TILE_SIZE, y * TILE_SIZE);
 	else if(character == '1')
-		mlx_image_to_window(mlx, image.wall, x , y);
+		mlx_image_to_window(mlx, image.wall, x * TILE_SIZE, y * TILE_SIZE);
 	else if(character == '0')
-		mlx_image_to_window(mlx, image.floor, x , y);
+		mlx_image_to_window(mlx, image.floor, x * TILE_SIZE, y * TILE_SIZE);
 	else if (character == 'C')
-		mlx_image_to_window(mlx, image.collectable, x , y);
+		mlx_image_to_window(mlx, image.collect, x * TILE_SIZE, y * TILE_SIZE);
 	else if (character == 'E')
-		mlx_image_to_window(mlx, image.exit, x , y);
+		mlx_image_to_window(mlx, image.exit, x * TILE_SIZE, y * TILE_SIZE);
 }
