@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 14:32:10 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/29 19:01:15 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/29 19:16:47 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,22 @@ void	movement(t_game *game, char move)
 	// }
 }
 
+void	print_array(char **array)
+{
+	int	y = 0;
+
+	while(array[y])
+	{
+		printf("%s\n", array[y]);
+		y++;
+	}
+}
 
 void	move_up(t_game *game, char **array, int x, int y)
 {
-	printf("%c", array[y-1][x]);
-	if (array[y - 1][x] != '1')
+	//print_array(array);
+	printf("x = %d\ny = %d\n", x, y);
+	if (array[game->map->pos_y - 1][game->map->pos_x] != '1')
 	{
 		game->images.player->instances[0].y -= 64;
 		game->map->pos_y--;
