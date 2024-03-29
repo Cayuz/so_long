@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/28 19:57:46 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/29 14:53:04 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ typedef struct s_image
 	t_texture	textures;
 }	t_image;
 
-
 typedef struct	s_game
 {
 	t_map	*map;
 	t_image	images;
 	t_list	*list;
+	mlx_t	*mlx;
+	int		moves;
 }	t_game;
 
 /*=============MAIN=============*/
