@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/29 14:53:04 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/29 18:59:09 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct	s_map
 	int	player;
 	int	column_count;
 	int	row_count;
-	int	player_x;
-	int	player_y;
+	int	pos_x;
+	int	pos_y;
 	int	valid_path;
 }	t_map;
 
@@ -104,7 +104,7 @@ void	print_map(char **array, t_map map);
 /*===========CHECK MAP===========*/
 
 char	**list_to_array(t_list *list, t_map *map);
-void	player_pos(char **array, t_map map);
+void	player_pos(char **array, t_map *map);
 bool	flood_fill(char **array, int x, int y, t_map *map);
 
 /*=============RENDER============*/
@@ -124,5 +124,8 @@ void	display_img(mlx_t *mlx, int x, int y, char character, t_image image);
 int		fd_check(char *filename);
 void	init_struct2(t_image *images, mlx_t *mlx);
 void	ber_check(char *filename);
+
+void	move_up(t_game *game, char **array, int x, int y);
+void	movement(t_game *game, char move);
 
 #endif

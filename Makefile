@@ -6,7 +6,7 @@
 #    By: cavan-vl <cavan-vl@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/12 15:49:22 by cavan-vl      #+#    #+#                  #
-#    Updated: 2024/03/26 19:34:31 by cavan-vl      ########   odam.nl          #
+#    Updated: 2024/03/29 18:59:40 by cavan-vl      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC				:= cc -Ofast
 LIBS			:= $(LIBFT)/libft.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 HEADER			:= -I ./includes -I $(LIBMLX)/include/MLX42 -I $(LIBFT)/inc
 
-SRCS			:= main.c parse.c check_map.c utils.c list_utils.c check_1.c render.c images.c initialize.c
+SRCS			:= main.c parse.c check_map.c utils.c list_utils.c check_1.c render.c images.c initialize.c move.c
 
 SRC_DIR			:= src
 SRC				:= $(addprefix $(SRC_DIR)/, $(SRCS))

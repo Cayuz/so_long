@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/06 14:37:02 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/28 20:14:03 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/03/29 18:31:41 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,28 @@ char	**list_to_array(t_list *list, t_map *map)
 		current = current->next;
 	}
 	array[i] = NULL;
-	player_pos(array, *map);
+	player_pos(array, map);
 	return(array);
 }
 
-void	player_pos(char **array, t_map map)
+void	player_pos(char **array, t_map *map)
 {
 	int	x;
 	int	y;
 
 	x = 0;
 	y = 0;
-	while(y < map.row_count)
+	while(y < map->row_count)
 	{
 		x = 0;
-		while(x < map.column_count)
+		while(x < map->column_count)
 		{
 			if (array[y][x] == 'P')
 			{
-				if (flood_fill(array, x, y, &map) == false)
+				if (flood_fill(array, x, y, map) == false)
 					error_msg("Map has no valid path!");
+				map->pos_x = x;
+				map->pos_y = y;
 				return ;
 			}
 			x++;
