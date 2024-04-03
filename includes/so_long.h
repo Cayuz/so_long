@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/29 18:59:09 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/03 18:32:37 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct	s_game
 	t_image	images;
 	t_list	*list;
 	mlx_t	*mlx;
+	char	**array;
 	int		moves;
 }	t_game;
 
@@ -119,13 +120,16 @@ void	background(mlx_t *mlx, t_game *game);
 void	traverse_map(t_list *map_list, t_image img, mlx_t *mlx);
 void	display_img(mlx_t *mlx, int x, int y, char character, t_image image);
 
-// void	init_struct2(t_image *images);
+// void	init_images(t_image *images);
 
 int		fd_check(char *filename);
-void	init_struct2(t_image *images, mlx_t *mlx);
+void	init_images(t_image *images, mlx_t *mlx);
 void	ber_check(char *filename);
 
-void	move_up(t_game *game, char **array, int x, int y);
-void	movement(t_game *game, char move);
+void	move_up(t_game *game, char **array);
+void	move_down(t_game *game, char **array);
+void	move_left(t_game *game, char **array);
+void	move_right(t_game *game, char **array);
+void	movement(t_game *game, char move, char **array);
 
 #endif

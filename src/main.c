@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 15:50:44 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/29 19:19:25 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/03 18:39:43 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,21 @@ void ft_keyhook(mlx_key_data_t keydata, void *data)
 	t_game	*game;
 
 	game = data;
+	(void) keydata;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
-		movement(game, 'u');
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_DOWN) || 
-	// 		mlx_is_key_down(game->mlx, MLX_KEY_S))
-	// 	move_down();
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT) || 
-	// 		mlx_is_key_down(game->mlx, MLX_KEY_A))
-	// 	move_left();
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT)|| 
-	// 		mlx_is_key_down(game->mlx, MLX_KEY_D))
-	// 	move_right();
+	if (mlx_is_key_down(game->mlx, MLX_KEY_UP) || 
+			mlx_is_key_down(game->mlx, MLX_KEY_W))
+		move_up(game, game->array);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_DOWN) || 
+			mlx_is_key_down(game->mlx, MLX_KEY_S))
+		move_down(game, game->array);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT) || 
+			mlx_is_key_down(game->mlx, MLX_KEY_A))
+		move_left(game, game->array);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT)|| 
+			mlx_is_key_down(game->mlx, MLX_KEY_D))
+		move_right(game, game->array);
 }
 
 int main(int ac, char **av)
@@ -46,6 +48,7 @@ int main(int ac, char **av)
 		"so_long", true)))
 		error_msg("oops");
 	render(game.mlx, game.list, &game);
+	game.array = list_to_array(game.list, game.map);
 	mlx_key_hook(game.mlx, &ft_keyhook, &game);
 	mlx_loop(game.mlx);
 	return (EXIT_SUCCESS);

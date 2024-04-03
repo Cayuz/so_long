@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 20:58:15 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/29 14:38:52 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/03 18:24:14 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@ void	*ft_malloc(size_t size)
 	if (alloc == NULL)
 		error_msg("allocation failed");
 	return (alloc);
+}
+
+void	print_array(char **array)
+{
+	int	y = 0;
+
+	printf("====================================\n");
+	while(array[y])
+	{
+		printf("%s\n", array[y]);
+		y++;
+	}
+	printf("====================================\n");
 }
 
 // int	error_exit(t_map *map, char *msg)

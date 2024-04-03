@@ -9,7 +9,7 @@
 			"request": "launch",
 			"name": "Debug",
 			"program": "${workspaceFolder}/so_long",
-			"args": ["maps/3by5.ber"],
+			"args": ["maps/wrong.ber"],
 			"cwd": "${workspaceFolder}"
 		}
 	]
