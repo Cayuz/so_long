@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 15:53:36 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/04 19:35:55 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/04 19:44:36 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ void	display_img(mlx_t *mlx, int x, int y, char character, t_image image)
 
 void	set_depth(t_image images)
 {
-	instance_loop(1, images.floor);
-	instance_loop(2, images.wall);
-	instance_loop(2, images.exit);
-	instance_loop(2, images.collect);
-	instance_loop(3, images.player);
+	instance_loop(2, images.floor);
+	instance_loop(3, images.wall);
+	instance_loop(3, images.exit);
+	instance_loop(3, images.collect);
+	instance_loop(4, images.player);
 
 }
 
