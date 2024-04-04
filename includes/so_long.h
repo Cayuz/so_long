@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/03 18:32:37 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/04 19:32:31 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define WIDTH 100
 # define HEIGHT 100
-# define TILE_SIZE 64
+# define TILE 64
 # define BPP sizeof(int32_t)
 
 # include "/home/cavan-vl/Desktop/curriculum/so_long/libraries/MLX42/include/MLX42/MLX42.h"
@@ -117,7 +117,7 @@ void	floors(mlx_t *mlx, t_image *image);
 void	exits(mlx_t *mlx, t_image *image);
 void	collect(mlx_t *mlx, t_image *image);
 void	background(mlx_t *mlx, t_game *game);
-void	traverse_map(t_list *map_list, t_image img, mlx_t *mlx);
+void	render_map(t_list *map_list, t_image img, mlx_t *mlx);
 void	display_img(mlx_t *mlx, int x, int y, char character, t_image image);
 
 // void	init_images(t_image *images);
@@ -131,5 +131,8 @@ void	move_down(t_game *game, char **array);
 void	move_left(t_game *game, char **array);
 void	move_right(t_game *game, char **array);
 void	movement(t_game *game, char move, char **array);
+
+void	instance_loop(int depth, mlx_image_t *image);
+void	set_depth(t_image images);
 
 #endif

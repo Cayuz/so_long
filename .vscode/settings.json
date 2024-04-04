@@ -4,6 +4,7 @@
 		"C": "keyhr.42-c-format",
 		"array": "c",
 		"cmath": "c",
-		"ranges": "c"
+		"ranges": "c",
+		"random": "c"
 	}
 }
