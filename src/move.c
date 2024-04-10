@@ -6,34 +6,40 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 14:32:10 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/04 20:59:51 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/10 18:14:44 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// void	collect_it(mlx_image_t *collect, int position)
-// {
-// 	(void) position;
-// 	mlx_set_instance_depth(&collect->instances[1], 0);
-// 	// instance_loop(1, collect->instances[position]);
-// 	// collect->instances[0]
-// }
+void	position_check(t_game *game, int x, int y)
+{
+	int	i;
 
-// void	collect_it(t_game *game, mlx_image_t *collect, int y, int x)
-// {
-// 	int	i;
-	
-// 	i = 0;
-// 	x = x * TILE;
-// 	y = y * TILE;
-// 	while(i < game->map->collectibles)
-// 	{
-// 		if (collect->instances[i].x == x && collect->instances[i].y == y)
-// 			mlx_set_instance_depth(&collect->instances[i], 0);
-// 	}
-// 	i++;
-// }
+	i = 0;
+	while(game->map->collectibles != 0 && game->array[y][x] == 'C')
+	{
+		if(x == (game->images.collect->instances[i].x / TILE) &&
+			y == (game->images.collect->instances[i].y / TILE))
+		{
+			game->images.collect->instances[i].enabled = false;
+			game->map->collectibles--;
+			game->array[y][x] = '0';
+			break;
+		}
+		i++;
+	}
+	if (game->map->collectibles == 0)
+	{
+		instance_loop(0, game->images.exit_closed);
+		instance_loop(3, game->images.exit);
+	}
+	if (game->array[y][x] == 'E' && game->map->collectibles == 0)
+	{
+		printf("You are now ready become a pokémon master!\n");
+		mlx_close_window(game->mlx);
+	}
+}
 
 void	move_up(t_game *game, char **array)
 {
@@ -43,6 +49,8 @@ void	move_up(t_game *game, char **array)
 		{
 			game->images.player->instances[0].y -= TILE;
 			game->map->pos_y--;
+			printf("moves: [%i]\n", ++game->moves);
+			position_check(game, game->map->pos_x, game->map->pos_y);
 		}
 	}
 }
@@ -55,6 +63,8 @@ void	move_down(t_game *game, char **array)
 		{
 			game->images.player->instances[0].y += TILE;
 			game->map->pos_y++;
+			printf("moves: [%i]\n", ++game->moves);
+			position_check(game, game->map->pos_x, game->map->pos_y);
 		}
 	}
 }
@@ -65,12 +75,10 @@ void	move_left(t_game *game, char **array)
 	{
 		if (array[game->map->pos_y][game->map->pos_x - 1] != '1')
 		{
-			if (array[game->map->pos_y][game->map->pos_x - 1] == 'C')
-			{
-				collect_it(game, game->images.collect, game->map->pos_y, game->map->pos_x - 1);
-			}
 			game->images.player->instances[0].x -= TILE;
 			game->map->pos_x--;
+			printf("moves: [%i]\n", ++game->moves);
+			position_check(game, game->map->pos_x, game->map->pos_y);
 		}
 	}
 }
@@ -83,6 +91,8 @@ void	move_right(t_game *game, char **array)
 		{
 			game->images.player->instances[0].x += TILE;
 			game->map->pos_x++;
+			printf("moves: [%i]\n", ++game->moves);
+			position_check(game, game->map->pos_x, game->map->pos_y);
 		}
 	}
 }

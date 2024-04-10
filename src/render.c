@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 15:53:36 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/04 19:44:36 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/10 18:13:37 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,20 @@ void	display_img(mlx_t *mlx, int x, int y, char character, t_image image)
 	else if (character == 'C')
 		mlx_image_to_window(mlx, image.collect, x * TILE, y * TILE);
 	else if (character == 'E')
+	{
 		mlx_image_to_window(mlx, image.exit, x * TILE, y * TILE);
+		mlx_image_to_window(mlx, image.exit_closed, x * TILE, y * TILE);
+	}
 }
 
 void	set_depth(t_image images)
 {
-	instance_loop(2, images.floor);
+	instance_loop(1, images.floor);
 	instance_loop(3, images.wall);
-	instance_loop(3, images.exit);
+	instance_loop(3, images.exit_closed);
 	instance_loop(3, images.collect);
 	instance_loop(4, images.player);
-
+	instance_loop(1, images.exit);
 }
 
 void	instance_loop(int depth, mlx_image_t *image)

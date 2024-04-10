@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/03 16:13:43 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/10 17:14:00 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,6 @@ void	check_outer_walls(char *line)
 		i++;
 	}
 }
-
-// void	validate_map(t_map *map, t_list *list)
-// {
-// 	t_list	*temp;
-// 	int		i;
-
-// 	i = 0;
-// 	temp = list;
-// 	while(temp)
-// 	{
-// 		i = 0;
-// 		while(temp->line[i])
-// 		{
-// 			if (temp->line[i] == 'P')
-// 				map->player++;
-// 			else if (temp->line[i] == 'C')
-// 				map->collectibles++;
-// 			else if (temp->line[i] == 'E')
-// 				map->exit++;
-// 			else if (temp->line[i] == '0')
-// 				i++;
-// 			else if (temp->line[i] == '1')
-// 				i++;
-// 			else
-// 				error_msg("Invalid character found in map");
-			
-// 		}
-// 	}
-// }
 
 void	validate_line(char *line, t_map *map)
 {
@@ -122,7 +93,7 @@ t_map	*map_init(int fd, t_game *game)
 	char	**map_array;
 
 	game->map = (t_map *)ft_malloc(sizeof(t_map));
-	init_struct(game->map);
+	init_struct(game);
 	game->list = make_list(fd);
 	read_map(game->list, game->map);
 	map_array = list_to_array(game->list, game->map);

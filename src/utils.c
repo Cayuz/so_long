@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 20:58:15 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/03 18:24:14 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/10 17:34:11 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,3 @@ void	print_array(char **array)
 // 	clean_up();
 // 	exit(EXIT_FAILURE);
 // }
-
-// bool	char_check(char *string, char *string2)
-// {
-// 	int		i;
-// 	int		j;
-// 	bool	found;
-
-// 	i = 0;
-// 	while(string[i] != '\0')
-// 	{
-// 		j = 0;
-// 		found = false;
-// 		while(string2[j] != '\0')
-// 		{
-// 			if (string[i] == string2[j])
-// 			{
-// 				found = true;
-// 				break ;
-// 			}
-// 			j++;
-// 		}
-// 		if (!found)
-// 			return false;
-// 		i++;
-// 	}
-// 	return (true);
-// }
-

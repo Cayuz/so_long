@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/04 19:32:31 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/10 18:02:35 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_texture
 	mlx_texture_t	*wall;
 	mlx_texture_t	*floor;
 	mlx_texture_t	*exit;
+	mlx_texture_t	*exit_closed;
 	mlx_texture_t	*collect;
 }	t_texture;
 
@@ -61,6 +62,7 @@ typedef struct s_image
 	mlx_image_t	*wall;
 	mlx_image_t	*floor;
 	mlx_image_t	*exit;
+	mlx_image_t	*exit_closed;
 	mlx_image_t	*collect;
 	t_texture	textures;
 }	t_image;
@@ -94,7 +96,7 @@ void	read_map(t_list *list, t_map *map);
 void	check_outer_walls(char *line);
 void	validate_line(char *line, t_map *map);
 char	**store_map(int fd, char **map_array, t_map *map);
-void	init_struct(t_map *map);
+void	init_struct(t_game *game);
 
 /*=============UTILS=============*/
 
@@ -115,6 +117,7 @@ void	player(mlx_t *mlx, t_image *image);
 void	walls(mlx_t *mlx, t_image *image);
 void	floors(mlx_t *mlx, t_image *image);
 void	exits(mlx_t *mlx, t_image *image);
+void	exit_open(mlx_t *mlx, t_image *image);
 void	collect(mlx_t *mlx, t_image *image);
 void	background(mlx_t *mlx, t_game *game);
 void	render_map(t_list *map_list, t_image img, mlx_t *mlx);
