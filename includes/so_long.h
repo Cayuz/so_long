@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/10 18:02:35 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/10 19:16:39 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct	s_game
 
 t_map	*map_init(int fd, t_game *game);
 
-/*==========LIST_UTILS==========*/
+/*==========LIST UTILS==========*/
 
 t_list	*last_list(t_list *lst);
 void	add_back(t_list **lst, t_list *new);
@@ -117,17 +117,16 @@ void	player(mlx_t *mlx, t_image *image);
 void	walls(mlx_t *mlx, t_image *image);
 void	floors(mlx_t *mlx, t_image *image);
 void	exits(mlx_t *mlx, t_image *image);
-void	exit_open(mlx_t *mlx, t_image *image);
 void	collect(mlx_t *mlx, t_image *image);
 void	background(mlx_t *mlx, t_game *game);
 void	render_map(t_list *map_list, t_image img, mlx_t *mlx);
 void	display_img(mlx_t *mlx, int x, int y, char character, t_image image);
 
-// void	init_images(t_image *images);
-
 int		fd_check(char *filename);
 void	init_images(t_image *images, mlx_t *mlx);
 void	ber_check(char *filename);
+
+/*==============MOVE=============*/
 
 void	move_up(t_game *game, char **array);
 void	move_down(t_game *game, char **array);

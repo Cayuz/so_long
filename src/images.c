@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:10:09 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/10 18:03:22 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/10 19:15:36 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,6 @@ void	exits(mlx_t *mlx, t_image *image)
 		error_msg("failed to load png");
 	image->exit_closed = mlx_texture_to_image(mlx, image->textures.exit_closed);
 	mlx_delete_texture(image->textures.exit_closed);
-}
-
-void	exit_open(mlx_t *mlx, t_image *image)
-{
 	image->textures.exit = mlx_load_png("./sprites/exit.png");
 	if (!image->textures.exit)
 		error_msg("failed to load png");

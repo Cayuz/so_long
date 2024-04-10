@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 20:58:15 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/10 17:34:11 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/10 19:14:20 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ void	print_array(char **array)
 		y++;
 	}
 	printf("====================================\n");
+}
+
+void	instance_loop(int depth, mlx_image_t *image)
+{
+	size_t	i;
+
+	i = 0;
+	while(i < image->count)
+	{
+		mlx_set_instance_depth(&image->instances[i], depth);
+		i++;
+	}
 }
 
 // int	error_exit(t_map *map, char *msg)

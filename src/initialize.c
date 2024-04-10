@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:34:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/10 18:02:14 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/10 19:15:31 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	init_images(t_image *images, mlx_t *mlx)
 {
 	floors(mlx, images);
 	exits(mlx, images);
-	exit_open(mlx, images);
 	player(mlx, images);
 	collect(mlx, images);
 	walls(mlx, images);

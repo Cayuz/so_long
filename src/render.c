@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 15:53:36 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/10 18:13:37 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/10 19:19:56 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,25 @@ void	render_map(t_list *map_list, t_image img, mlx_t *mlx)
 void	display_img(mlx_t *mlx, int x, int y, char character, t_image image)
 {
 	if (character == 'P')
-		mlx_image_to_window(mlx, image.player, x * TILE, y * TILE);
+	{
+		if (mlx_image_to_window(mlx, image.player, x * TILE, y * TILE) < 0)
+			error_msg("failed to load image");
+	}
 	else if(character == '1')
-		mlx_image_to_window(mlx, image.wall, x * TILE, y * TILE);
-	else if(character == '0')
-		mlx_image_to_window(mlx, image.floor, x * TILE, y * TILE);
+	{	
+		if (mlx_image_to_window(mlx, image.wall, x * TILE, y * TILE) < 0)
+			error_msg("failed to load image");
+	}
 	else if (character == 'C')
-		mlx_image_to_window(mlx, image.collect, x * TILE, y * TILE);
+	{
+		if (mlx_image_to_window(mlx, image.collect, x * TILE, y * TILE) < 0)
+			error_msg("failed to load image");
+	}
 	else if (character == 'E')
 	{
-		mlx_image_to_window(mlx, image.exit, x * TILE, y * TILE);
-		mlx_image_to_window(mlx, image.exit_closed, x * TILE, y * TILE);
+		if (mlx_image_to_window(mlx, image.exit, x * TILE, y * TILE) ||
+		mlx_image_to_window(mlx, image.exit_closed, x * TILE, y * TILE) < 0)
+			error_msg("failed to load image");
 	}
 }
 
@@ -91,16 +99,4 @@ void	set_depth(t_image images)
 	instance_loop(3, images.collect);
 	instance_loop(4, images.player);
 	instance_loop(1, images.exit);
-}
-
-void	instance_loop(int depth, mlx_image_t *image)
-{
-	size_t	i;
-
-	i = 0;
-	while(i < image->count)
-	{
-		mlx_set_instance_depth(&image->instances[i], depth);
-		i++;
-	}
 }
