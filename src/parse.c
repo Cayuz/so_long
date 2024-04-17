@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/10 17:14:00 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/17 17:48:07 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,16 @@ t_list *make_list(int fd)
 
 t_map	*map_init(int fd, t_game *game)
 {
-	char	**map_array;
-
 	game->map = (t_map *)ft_malloc(sizeof(t_map));
 	init_struct(game);
 	game->list = make_list(fd);
 	read_map(game->list, game->map);
-	map_array = list_to_array(game->list, game->map);
+	list_to_array(game, game->list, game->map);
+	int i = 0;
+	while(game->array[i])
+	{
+		printf("ma_init = no fucks given mofo %s\n", game->array[i]);
+		i++;
+	}
 	return (game->map);
 }

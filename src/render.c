@@ -6,17 +6,17 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 15:53:36 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/10 19:19:56 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/17 17:47:25 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	render(mlx_t *mlx, t_list *map, t_game *game)
+void	render(mlx_t *mlx, t_game *game)
 {
 	init_images(&game->images, mlx);
 	background(mlx, game);
-	render_map(map, game->images, mlx);
+	render_map(game, game->images, mlx);
 	set_depth(game->images);
 }
 
@@ -24,45 +24,51 @@ void	background(mlx_t *mlx, t_game *game)
 {
 	int		x;
 	int		y;
-	t_list	*temp;
+	int	i = 0;
 
 	y = 0;
-	temp = game->list;
-	while(temp != NULL && y < game->map->row_count)
+	while(game->array[i] && y < game->map->row_count)
 	{
-		x = 0;
-		while(x < game->map->column_count)
-		{
-			if (mlx_image_to_window(mlx, game->images.floor,
-					x * TILE, y * TILE) < 0)
-				error_msg("failed to load image");
-			x++;
-		}
-		y++;
-		temp = temp->next;
+	x = 0;
+	while(x < game->map->column_count)
+	{
+		if (mlx_image_to_window(mlx, game->images.floor,
+				x * TILE, y * TILE) < 0)
+			error_msg("failed to load image");
+		x++;
 	}
+	y++;
+	i++;
+		
+	}
+
 }
 
-void	render_map(t_list *map_list, t_image img, mlx_t *mlx)
+void	render_map(t_game *game, t_image img, mlx_t *mlx)
 {
 	int		x;
 	int		y;
 	int		len;
-	t_list	*temp;
+	int		i = 0;
 
 	y = 0;
-	len = ft_strlen(map_list->line);
-	temp = map_list;
-	while(temp != NULL)
+	len = ft_strlen(game->array[i]);
+	while(game->array[i])
+	{
+		printf("render = %s\n", game->array[i]);
+		i++;
+	}
+	i = 0;
+	while(game->array[i])
 	{
 		x = 0;
 		while(x < len)
 		{
-			display_img(mlx, x, y, temp->line[x], img);
+			display_img(mlx, x, y, game->array[i][x], img);
 			x++;
 		}
 		y++;
-		temp = temp->next;
+		i++;
 	}
 }
 

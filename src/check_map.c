@@ -6,37 +6,40 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/06 14:37:02 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/03 18:18:07 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/17 20:39:43 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**list_to_array(t_list *list, t_map *map)
+void	list_to_array(t_game *game, t_list *list, t_map *map)
 {
-	char	**array;
 	t_list	*current;
 	int		i;
+	char	**temp;
 
-	map->row_count = list_size(list);
-	array = (char **)ft_malloc((map->row_count + 1) * (sizeof(char *)));
 	i = 0;
+	temp = NULL;
+	map->row_count = list_size(list);
+	game->array = (char **)malloc((map->row_count + 1) * (sizeof(char *)));
 	current = list;
 	while(current != NULL)
 	{
-		array[i] = ft_strdup(current->line);
+		game->array[i] = ft_strdup(current->line);
 		i++;
 		current = current->next;
 	}
-	array[i] = NULL;
-	player_pos(array, map);
-	return(array);
+	game->array[i] = NULL;
+	free_list(list);
+	temp = copy_array(game->array, map->row_count + 1);
+	player_pos(temp, map);
+	free_array(temp);
 }
 
 void	player_pos(char **array, t_map *map)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
 	x = 0;
 	y = 0;
@@ -48,7 +51,10 @@ void	player_pos(char **array, t_map *map)
 			if (array[y][x] == 'P')
 			{
 				if (flood_fill(array, x, y, map) == false)
+				{
+					free_array(array);
 					error_msg("Map has no valid path!");
+				}
 				map->pos_x = x;
 				map->pos_y = y;
 				return ;

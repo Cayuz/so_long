@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 15:50:44 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/10 17:44:16 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/17 20:40:33 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ int main(int ac, char **av)
 	ber_check(av[1]);
 	fd = fd_check(av[1]);
 	game.map = map_init(fd, &game);
-	if (!(game.mlx = mlx_init(game.map->column_count * 64, game.map->row_count * 64, \
-		"so_long", true)))
+	if (!(game.mlx = mlx_init(game.map->column_count * 64,
+		game.map->row_count * 64, "so_long", true)))
 		error_msg("oops");
-	render(game.mlx, game.list, &game);
-	game.array = list_to_array(game.list, game.map);
+	
+	render(game.mlx, &game);
 	mlx_key_hook(game.mlx, &ft_keyhook, &game);
 	mlx_loop(game.mlx);
+	clean_up(&game);
 	return (EXIT_SUCCESS);
 }
 

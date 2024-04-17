@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/10 19:16:39 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/17 20:40:19 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,20 +106,20 @@ void	print_map(char **array, t_map map);
 
 /*===========CHECK MAP===========*/
 
-char	**list_to_array(t_list *list, t_map *map);
+void	list_to_array(t_game *game, t_list *list, t_map *map);
 void	player_pos(char **array, t_map *map);
 bool	flood_fill(char **array, int x, int y, t_map *map);
 
 /*=============RENDER============*/
 
-void	render(mlx_t *mlx, t_list *map, t_game *game);
+void	render(mlx_t *mlx, t_game *game);
 void	player(mlx_t *mlx, t_image *image);
 void	walls(mlx_t *mlx, t_image *image);
 void	floors(mlx_t *mlx, t_image *image);
 void	exits(mlx_t *mlx, t_image *image);
 void	collect(mlx_t *mlx, t_image *image);
 void	background(mlx_t *mlx, t_game *game);
-void	render_map(t_list *map_list, t_image img, mlx_t *mlx);
+void	render_map(t_game *game, t_image img, mlx_t *mlx);
 void	display_img(mlx_t *mlx, int x, int y, char character, t_image image);
 
 int		fd_check(char *filename);
@@ -136,5 +136,8 @@ void	movement(t_game *game, char move, char **array);
 
 void	instance_loop(int depth, mlx_image_t *image);
 void	set_depth(t_image images);
+void	clean_up(t_game *game);
+char	**copy_array(char **array, int size);
+void	free_list(t_list *list);
 
 #endif
