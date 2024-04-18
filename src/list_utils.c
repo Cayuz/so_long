@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 20:23:47 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/03/26 16:46:28 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/18 15:37:40 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 t_list	*last_list(t_list *lst)
 {
-	t_list
-	*temp;
+	t_list	*temp;
 
 	if (lst == NULL)
 		return (NULL);
@@ -27,8 +26,7 @@ t_list	*last_list(t_list *lst)
 
 void	add_back(t_list **lst, t_list *new)
 {
-	t_list
-	*ptr;
+	t_list	*ptr;
 
 	if (*lst == NULL)
 	{
@@ -42,8 +40,7 @@ void	add_back(t_list **lst, t_list *new)
 
 t_list	*new_node(char *line)
 {
-	t_list
-	*node;
+	t_list	*node;
 
 	node = (t_list *)ft_malloc(sizeof(t_list));
 	node->line = line;
@@ -65,12 +62,12 @@ int	line_len(char *str)
 
 int	list_size(t_list *list)
 {
-	t_list *temp;
+	t_list	*temp;
 	int		i;
 
 	i = 0;
 	temp = list;
-	while(temp)
+	while (temp)
 	{
 		temp = temp->next;
 		i++;

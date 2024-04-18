@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:10:09 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/10 19:15:36 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/18 15:51:16 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	walls(mlx_t *mlx, t_image *image)
 		error_msg("failed to load png");
 	image->wall = mlx_texture_to_image(mlx, image->textures.wall);
 	mlx_delete_texture(image->textures.wall);
-	}
+}
 
 void	floors(mlx_t *mlx, t_image *image)
 {

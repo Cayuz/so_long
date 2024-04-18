@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 14:32:10 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/10 18:14:44 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/18 16:06:57 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	position_check(t_game *game, int x, int y)
 	int	i;
 
 	i = 0;
-	while(game->map->collectibles != 0 && game->array[y][x] == 'C')
+	while (game->map->collectibles != 0 && game->array[y][x] == 'C')
 	{
-		if(x == (game->images.collect->instances[i].x / TILE) &&
+		if (x == (game->images.collect->instances[i].x / TILE) && \
 			y == (game->images.collect->instances[i].y / TILE))
 		{
 			game->images.collect->instances[i].enabled = false;
 			game->map->collectibles--;
 			game->array[y][x] = '0';
-			break;
+			break ;
 		}
 		i++;
 	}

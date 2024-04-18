@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/17 17:48:07 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/18 16:25:33 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	check_outer_walls(char *line)
 {
 	int	i;
-	
+
 	i = 0;
-	while(line[i] != '\0' && line[i] != '\n')
+	while (line[i] != '\0' && line[i] != '\n')
 	{
-		if(line[i] != '1')
+		if (line[i] != '1')
 			error_msg("Map is not surrounded by walls");
 		i++;
 	}
@@ -30,7 +30,7 @@ void	validate_line(char *line, t_map *map)
 	int	i;
 
 	i = 0;
-	while(line[i] != '\0')
+	while (line[i] != '\0')
 	{
 		if (!ft_strchr("PEC01\n", (int)line[i]))
 			error_msg("Invalid character found in map");
@@ -44,9 +44,9 @@ void	validate_line(char *line, t_map *map)
 	}
 }
 
-void read_map(t_list *list, t_map *map)
+void	read_map(t_list *list, t_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	check_outer_walls(list->line);
@@ -70,7 +70,7 @@ void read_map(t_list *list, t_map *map)
 	}
 }
 
-t_list *make_list(int fd)
+t_list	*make_list(int fd)
 {
 	t_list	*list;
 	char	*line;
@@ -78,14 +78,14 @@ t_list *make_list(int fd)
 
 	list = NULL;
 	line = get_next_line(fd);
-	while(line != NULL)
+	while (line != NULL)
 	{
 		node = new_node(line);
 		add_back(&list, node);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return(list);
+	return (list);
 }
 
 t_map	*map_init(int fd, t_game *game)
@@ -95,11 +95,5 @@ t_map	*map_init(int fd, t_game *game)
 	game->list = make_list(fd);
 	read_map(game->list, game->map);
 	list_to_array(game, game->list, game->map);
-	int i = 0;
-	while(game->array[i])
-	{
-		printf("ma_init = no fucks given mofo %s\n", game->array[i]);
-		i++;
-	}
 	return (game->map);
 }

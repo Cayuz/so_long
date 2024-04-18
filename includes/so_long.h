@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/17 20:40:19 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/18 16:00:49 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,8 @@ void	floors(mlx_t *mlx, t_image *image);
 void	exits(mlx_t *mlx, t_image *image);
 void	collect(mlx_t *mlx, t_image *image);
 void	background(mlx_t *mlx, t_game *game);
-void	render_map(t_game *game, t_image img, mlx_t *mlx);
-void	display_img(mlx_t *mlx, int x, int y, char character, t_image image);
+void	render_map(t_game *game);
+void	display_img(t_game *game, int x, int y, char character);
 
 int		fd_check(char *filename);
 void	init_images(t_image *images, mlx_t *mlx);
