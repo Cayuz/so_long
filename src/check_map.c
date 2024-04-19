@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/06 14:37:02 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/18 19:28:07 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/19 14:04:39 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@ void	list_to_array(t_game *game, t_list *list, t_map *map)
 
 	i = 0;
 	temp = NULL;
-	map->row_count = list_size(list);
-	game->array = (char **)malloc((map->row_count + 1) * (sizeof(char *)));
+	game->array = (char **)ft_malloc((map->row_count + 1) * (sizeof(char *)));
 	current = list;
 	while (current != NULL)
 	{
 		game->array[i] = ft_strdup(current->line);
+		if (!game->array[i])
+		{
+			free_array(game->array);
+			exit(EXIT_FAILURE);
+		}
 		i++;
 		current = current->next;
 	}

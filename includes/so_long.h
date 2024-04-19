@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 16:13:13 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/18 16:00:49 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/19 14:23:29 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,17 @@
 # define WIDTH 100
 # define HEIGHT 100
 # define TILE 64
-# define BPP sizeof(int32_t)
 
-# include "/home/cavan-vl/Desktop/curriculum/so_long/libraries/MLX42/include/MLX42/MLX42.h"
-# include "/home/cavan-vl/Desktop/curriculum/so_long/libraries/libft42/inc/libft.h"
-# include "/home/cavan-vl/Desktop/curriculum/so_long/libraries/libft42/inc/ft_printf.h"
-# include "/home/cavan-vl/Desktop/curriculum/so_long/libraries/libft42/inc/get_next_line.h"
+# include "../libraries/MLX42/include/MLX42/MLX42.h"
+# include "../libraries/Lib42/inc/libft.h"
+# include "../libraries/Lib42/inc/ft_printf.h"
+# include "../libraries/Lib42/inc/get_next_line.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <fcntl.h>
 
-typedef struct	s_map
+typedef struct s_map
 {
 	int	exit;
 	int	collectibles;
@@ -67,7 +66,7 @@ typedef struct s_image
 	t_texture	textures;
 }	t_image;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	t_map	*map;
 	t_image	images;

@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/06 18:35:03 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/18 15:53:40 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/19 13:58:39 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	fd_check(char *filename)
 	if (fd == -1)
 		error_msg("FD wrong");
 	if (read(fd, 0, 0) == -1)
-		error_msg("something went wrong");
+	{
+		close(fd);
+		error_msg("FD reading failed!");
+	}
 	return (fd);
 }
 

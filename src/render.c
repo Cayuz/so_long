@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 15:53:36 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/18 16:04:32 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/19 14:08:51 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ void	render_map(t_game *game)
 {
 	int	x;
 	int	y;
-	int	len;
+	// int	len;
 	int	i;
 
 	i = 0;
 	y = 0;
-	len = ft_strlen(game->array[i]);
+	// len = ft_strlen(game->array[i]);
 	while (game->array[i])
 	{
 		x = 0;
-		while (x < len)
+		while (x < game->map->column_count)
 		{
 			display_img(game, x, y, game->array[i][x]);
 			x++;

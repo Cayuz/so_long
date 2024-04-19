@@ -6,7 +6,7 @@
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/14 14:52:17 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/18 16:25:33 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/19 13:59:11 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	check_outer_walls(char *line)
 	int	i;
 
 	i = 0;
+	// printf("%s\n", line);
 	while (line[i] != '\0' && line[i] != '\n')
 	{
 		if (line[i] != '1')
@@ -51,12 +52,14 @@ void	read_map(t_list *list, t_map *map)
 	i = 0;
 	check_outer_walls(list->line);
 	map->column_count = line_len(list->line);
+	map->row_count = list_size(list);
 	list->index = 1;
 	while (list != NULL)
 	{
 		i += 1;
 		if (line_len(list->line) != map->column_count)
 			error_msg("Map is not rectangular");
+		printf("%s\n", list->line);
 		if (list->index == map->row_count)
 		{
 			check_outer_walls(list->line);
@@ -84,6 +87,7 @@ t_list	*make_list(int fd)
 		add_back(&list, node);
 		line = get_next_line(fd);
 	}
+	free(line);
 	close(fd);
 	return (list);
 }

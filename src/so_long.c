@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   so_long.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: cavan-vl <cavan-vl@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/12 15:50:44 by cavan-vl      #+#    #+#                 */
-/*   Updated: 2024/04/18 16:18:32 by cavan-vl      ########   odam.nl         */
+/*   Updated: 2024/04/19 14:09:40 by cavan-vl      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ int	main(int ac, char **av)
 	game.mlx = mlx_init(game.map->column_count * 64, game.map->row_count * 64,
 			"so_long", true);
 	if (!game.mlx)
+	{
+		clean_up(&game);
 		error_msg("oops");
+	}
 	render(game.mlx, &game);
 	mlx_key_hook(game.mlx, &ft_keyhook, &game);
 	mlx_loop(game.mlx);
